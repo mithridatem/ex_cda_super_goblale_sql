@@ -11,10 +11,7 @@ if (isset($_POST["submit"])) {
         !empty($_POST["email"]) &&
         !empty($_POST["password"])) {
         //Nettoyer les entrées
-        $_POST["firstname"] = sanitize($_POST["firstname"]);
-        $_POST["lastname"] = sanitize($_POST["lastname"]);
-        $_POST["email"] = sanitize($_POST["email"]);
-        $_POST["password"] = sanitize($_POST["password"]);
+        sanitize_array($_POST);
         //Hash du mot de passe
         $options = ['cost' => 12];
         $_POST["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);

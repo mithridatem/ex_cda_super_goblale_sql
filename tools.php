@@ -19,3 +19,14 @@ function connect_bdd(): PDO
     DB_PASSWORD,
     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
+
+function sanitize_array(array &$data): void 
+{
+    foreach ($data as $key => $value) {
+        //Test si la colonne n'est pas un tableau
+        if (gettype($value) != 'array')
+        {
+            $data[$key] =  sanitize($value);
+        } 
+    }
+}
