@@ -15,6 +15,9 @@ if (isset($_POST["submit"])) {
         $_POST["lastname"] = sanitize($_POST["lastname"]);
         $_POST["email"] = sanitize($_POST["email"]);
         $_POST["password"] = sanitize($_POST["password"]);
+        //Hash du mot de passe
+        $options = ['cost' => 12];
+        $_POST["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
         //Ajout en BDD
         $message = add_user($_POST);
     } else {
