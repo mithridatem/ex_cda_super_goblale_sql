@@ -11,6 +11,7 @@ if (isset($_POST["submit"])) {
         $message = get_user_by_email($email);
         //Test si le compte existe
         if (gettype($message) == "array") {
+            //formater en chaine de caractères
             $message = "id: " . $message["id"] . " prénom: " . 
             $message["firstname"] . " nom: " .  
             $message["lastname"] . " email: " . 
