@@ -1,5 +1,4 @@
 <?php
-include 'env.php';
 
 function sanitize(string $str): string
 {
@@ -10,14 +9,6 @@ function sanitize(string $str): string
     //supprimer des caractères
     $str = htmlspecialchars($str, ENT_NOQUOTES);
     return $str;
-}
-
-function connect_bdd(): PDO
-{
-    return new PDO('mysql:host='. DB_HOST . ';dbname='. DB_NAME. '',
-    DB_USERNAME, 
-    DB_PASSWORD,
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
 
 function sanitize_array(array &$data): void 

@@ -1,6 +1,7 @@
 <?php
 //import des outils
 include 'tools.php';
+include 'user.php';
 
 //Test si le formulaire est remplis
 if (isset($_POST["submit"])) {
@@ -22,29 +23,6 @@ if (isset($_POST["submit"])) {
     }
 }
 
-//Méthode pour ajouter un utilisateur en BDD
-function add_user(array $user)
-{
-    try  {
-        //1 se connecter à la BDD
-        $bdd = connect_bdd();
-        //2 Ecrire la requête SQL
-        $sql = "INSERT INTO users(firstname, lastname, email,`password`) VALUE(?,?,?,?)";
-        //3 Préparer la requête
-        $req = $bdd->prepare($sql);
-        //4 Assigner les 4 paramètres
-        $req->bindValue(1, $user["firstname"], PDO::PARAM_STR);
-        $req->bindValue(2, $user["lastname"], PDO::PARAM_STR);
-        $req->bindValue(3, $user["email"], PDO::PARAM_STR);
-        $req->bindValue(4, $user["password"], PDO::PARAM_STR);
-        //5 Exécuter la requête
-        $req->execute();
-    } catch(Exception $e)
-    {
-        return "Le compte existe déja";
-    }
-    return "Le compte à été ajouté en BDD";
-}
 ?>
 
 <html lang="en">
